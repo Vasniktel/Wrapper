@@ -11,7 +11,8 @@ const multiwrap = (...funcs) => {
   }, {});
   // obj: object of { [fn.name]: [ args ] }
   return obj => Object.keys(obj).reduce((acc, fnName) => {
-    acc[fnName] = wrapped[fnName](...obj[fnName]);
+    if (wrapped[fnName])
+      acc[fnName] = wrapped[fnName](...obj[fnName]);
     return acc;
   }, {});
 };
